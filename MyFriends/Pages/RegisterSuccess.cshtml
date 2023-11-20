@@ -1,0 +1,12 @@
+﻿@page
+@model MyFriends.Pages.RegisterSuccessModel
+@{
+    ViewData["Title"] = "RegisterSuccess";
+}
+
+<h1>@ViewData["Title"]</h1>
+@{
+    <p>Registeration succeeded with email @Model.Email
+        <a class="nav-link" asp-page="/Login">Click here to Login.</a>
+    </p>
+}

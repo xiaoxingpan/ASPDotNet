@@ -1,3 +1,15 @@
-﻿@using Bakery
+﻿@* provide a mechanism to centralise directives that apply to Razor pages so that you don't have to add them to pages
+individually*@
+@using Bakery
+
+@* specify the namespace of the pages affected by the ViewImports file
+one @namespace directive per ViewImports file *@
 @namespace Bakery.Pages
+
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@* specify the Model*@
+@* @model Bakery.Models.Pie *@
+
+@* bring more namespaces into scope *@
+@* @using Bakery.Models *@

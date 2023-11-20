@@ -1,0 +1,73 @@
+﻿@page "{id:int}"
+@model MyFriends.Pages.ViewModel
+@{
+    ViewData["Title"] = "Views";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Friend</h4>
+    <hr />
+    @* edit part *@
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" class="p-2 m-2">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group pb-3">
+                    <label asp-for="Friend.Id" class="control-label pb-2"></label>
+                    <input asp-for="Friend.Id" readonly class="form-control-plaintext" />
+                </div>
+
+                <div class="form-group pb-3">
+                    <label asp-for="Friend.Name" class="control-label pb-2"></label>
+                    <input asp-for="Friend.Name" class="form-control" />
+                    <span asp-validation-for="Friend.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group pb-3">
+                    <label asp-for="Friend.Age" class="control-label pb-2"></label>
+                    <input asp-for="Friend.Age" class="form-control" />
+                    <span asp-validation-for="Friend.Age" class="text-danger"></span>
+                </div>
+                <div class="form-group pt-3">
+                    <input type="submit" value="Update" class="btn btn-primary" />
+
+                </div>
+            </form>
+            <div class="p-2 m-2">
+                <a asp-page="/Delete" asp-route-id="@Model.Friend.Id" class="btn btn-danger">Delete</a>
+
+            </div>
+            <div class="p-2 m-2">
+                <a class="btn btn-secondary" asp-page="FriendList">Back to
+                    List</a>
+            </div>
+        </div>
+    </div>
+    <hr />
+
+
+    @* display the friend details *@
+    <div>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Friend.Id)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Friend.Id)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Friend.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Friend.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Friend.Age)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Friend.Age)
+            </dd>
+        </dl>
+    </div>
+</div>

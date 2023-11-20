@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@* a template for all pages that reference it, header/footer/navbar *@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -40,7 +41,37 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @* place the content page *@
             @RenderBody()
+
+            @* render other pages *@
+            @* @RenderPage("/Pages/Shared/_LoginPartial.cshtml") *@
+            @* @await RenderSectionAsync("Scripts", required: false) *@
+            @* in child layout:
+            @section Scripts{
+            // content here
+            } *@
+
+            @* render a optional section *@
+            @* @if(IsSectionDefined("OptionalSection"))
+            {
+            @RenderSection("OptionalSection")
+            }
+            else
+            {
+            // default content
+            } *@
+
+            @* @if (!IsAdmin)
+            {
+            @{
+            IgnoreSection("admin");
+            }
+            }
+            else
+            {
+            @await RenderSectionAsync("admin")
+            } *@
         </main>
     </div>
 

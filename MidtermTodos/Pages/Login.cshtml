@@ -1,0 +1,47 @@
+﻿@page
+@model MidtermTodos.Pages.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-sm-12 col-md-12 col-lg-4">
+            <h1 class="mb-3">Login</h1>
+            <form method="post">
+                <h1 class="h3 mb-3 fw-normal">Use a local account to log in.</h1>
+                <ht />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group mb-3">
+                    <label asp-for="Input.UserName"></label>
+                    <input asp-for="Input.UserName" class="form-control" placeholder="name@example.com" />
+                    <span asp-validation-for="Input.UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Input.Password"></label>
+                    <input type="password" asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-check mb-3">
+                    <label class="form-check-label" asp-for="Input.RememberMe"></label>
+                    <input type="checkbox" asp-for="Input.RememberMe" class="form-check-input" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <button class="btn btn-primary" type="submit">Log in</button>
+                </div>
+                <div class="form-group mb-3">
+                    @* <p>
+                    <a asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p> *@
+                    <p>
+                        <a asp-page="./Register">Register as a new user</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+
+        @section Scripts {
+            <partial name="_ValidationScriptsPartial" />
+        }

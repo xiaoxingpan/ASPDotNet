@@ -1,0 +1,55 @@
+﻿@page
+@model MyFriends.Pages.FriendListModel
+@{
+    ViewData["Title"] = "Friend List";
+}
+
+<div class="container">
+    <h1 class="text-center">My Friends List</h1>
+    <hr />
+
+    <a class="btn btn-primary btn-sm mb-3" asp-page="./Add">Create New</a>
+
+    <table class="table table-bordered table-striped text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Friend[0].Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Friend[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Friend[0].Age)
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Friend != null && Model.Friend.Any())
+            {
+                @foreach (var friend in Model.Friend)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => friend.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => friend.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => friend.Age)
+                        </td>
+                        <td>
+                            <a class="btn btn-info btn-sm" asp-page="./View" asp-route-id="@friend.Id">View</a>
+                        </td>
+                    </tr>
+                }}
+            else
+            {
+                <tr>
+                    <td colspan="4">No Records Found</td>
+                </tr>
+            }
+        </tbody>
+    </table>

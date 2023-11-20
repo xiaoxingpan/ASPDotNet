@@ -1,3 +1,5 @@
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 namespace Bakery.Pages
 {
-    public class IndexModel : PageModel
+    public class IndexModel : PageModel  // provide clear separation between the UI layer (the .cshtml view file) and processing logic for the page
+                                         // an implementation of the Page Controller pattern
     {
         private readonly BakeryContext db;
         public IndexModel(BakeryContext db) => this.db = db;

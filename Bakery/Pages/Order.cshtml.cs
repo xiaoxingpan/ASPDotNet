@@ -33,36 +33,36 @@ namespace Bakery.Pages
                 Your total is ${Product.Price * OrderQuantity}.<br/>
                 We will contact you if we have questions about your order.  Thanks!<br/>";
                 // Resulting email is created in a local folder
-                // using (var smtp = new SmtpClient())
-                // {
-                //     smtp.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
-                //     smtp.PickupDirectoryLocation = @"c:\mailpickup";
-                //     var message = new MailMessage();
-                //     message.To.Add(OrderEmail);
-                //     message.Subject = "Fourth Coffee - New Order";
-                //     message.Body = body;
-                //     message.IsBodyHtml = true;
-                //     message.From = new MailAddress("sales@fourthcoffee.com");
-                //     await smtp.SendMailAsync(message);
-                // }
                 using (var smtp = new SmtpClient())
                 {
-                    var credential = new NetworkCredential
-                    {
-                        UserName = "example@gmail.com",  // replace with valid value
-                        Password = "password"  // replace with valid value
-                    };
-                    smtp.Credentials = credential;
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.Port = 587;
-                    smtp.EnableSsl = true;
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
+                    smtp.PickupDirectoryLocation = @"c:\mailpickup";
+                    var message = new MailMessage();
                     message.To.Add(OrderEmail);
                     message.Subject = "Fourth Coffee - New Order";
                     message.Body = body;
                     message.IsBodyHtml = true;
-                    message.From = new MailAddress("example@gmail.com");
+                    message.From = new MailAddress("sales@fourthcoffee.com");
                     await smtp.SendMailAsync(message);
                 }
+                // using (var smtp = new SmtpClient())
+                // {
+                //     var credential = new NetworkCredential
+                //     {
+                //         UserName = "example@gmail.com",  // replace with valid value
+                //         Password = "password"  // replace with valid value
+                //     };
+                //     smtp.Credentials = credential;
+                //     smtp.Host = "smtp.gmail.com";
+                //     smtp.Port = 587;
+                //     smtp.EnableSsl = true;
+                //     message.To.Add(OrderEmail);
+                //     message.Subject = "Fourth Coffee - New Order";
+                //     message.Body = body;
+                //     message.IsBodyHtml = true;
+                //     message.From = new MailAddress("example@gmail.com");
+                //     await smtp.SendMailAsync(message);
+                // }
                 return RedirectToPage("OrderSuccess");
             }
             return Page();

@@ -1,0 +1,44 @@
+﻿@page
+@model MidtermTodos.Pages.AddModel
+@{
+    ViewData["Title"] = "Add";
+}
+
+
+<div class="container">
+    <h3>Add a todo</h3>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" class="p-2 m-2">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group pb-3">
+                    <label asp-for="NewTodo.Task" class="control-label pb-2"></label>
+                    <input asp-for="NewTodo.Task" class="form-control" />
+                    <span asp-validation-for="NewTodo.Task" class="text-danger"></span>
+                </div>
+                <div class="form-group pb-3">
+                    <label asp-for="NewTodo.DueDate" class="control-label pb-2"></label>
+                    <input asp-for="NewTodo.DueDate" class="form-control" type="datetime-local" />
+                    <span asp-validation-for="NewTodo.DueDate" class="text-danger"></span>
+                </div>
+                <div class="form-check pb-3">
+                    <label asp-for="NewTodo.IsDone" class="form-check-label pb-2"></label>
+                    <input type="checkbox" asp-for="NewTodo.IsDone" class="form-check-input" />
+                    <span asp-validation-for="NewTodo.IsDone" class="text-danger"></span>
+                </div>
+                <div class="form-group row text-center pt-3">
+                    <div class="col-md-6 mx-auto"><input type="submit" value="Save" class="btn btn-primary" /></div>
+                    <div class="col-md-6 mx-auto"><a class="btn btn-secondary" asp-page="/Index">Back to
+                            List</a></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
