@@ -36,7 +36,8 @@ builder.Services.Configure<IdentityOptions>(options =>
 // user settings
 builder.Services.Configure<IdentityOptions>(options =>
 {
-    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+    options.User.RequireUniqueEmail = true; // Enforce unique usernames
     // allow users to sign in with a confirmed email address
     options.SignIn.RequireConfirmedEmail = false;
 });

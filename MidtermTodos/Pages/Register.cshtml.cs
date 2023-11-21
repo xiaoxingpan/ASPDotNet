@@ -33,7 +33,8 @@ namespace MidtermTodos.Pages
             public string Email { get; set; } = string.Empty;
 
             [Required]
-
+            [StringLength(100, MinimumLength = 1)]
+            [RegularExpression(@"^[a-zA-Z0-9_]*$", ErrorMessage = "Only letters, numbers, and underscores are allowed.")]
             [Display(Name = "UserName")]
             public string UserName { get; set; } = string.Empty;
 

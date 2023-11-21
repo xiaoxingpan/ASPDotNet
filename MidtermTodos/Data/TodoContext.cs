@@ -13,14 +13,14 @@ namespace MidtermTodos.Data
 
         public DbSet<Todo> Todos { get; set; } = null!;
 
-        // protected override void OnModelCreating(ModelBuilder modelBuilder)
-        // {
-        //     base.OnModelCreating(modelBuilder);
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
-        //     modelBuilder.Entity<Todo>()
-        //         .Property(t => t.DueDate)
-        //         .HasColumnType("DATETIME");
-        // }
+            modelBuilder.Entity<Todo>()
+                .Property(t => t.DueDate)
+                .HasColumnType("DATETIME");
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite(@"Data source=MidtermTodos.db");

@@ -2,33 +2,27 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MidtermTodos.Data;
 using MidtermTodos.Models;
-
-namespace MidtermTodos.Pages;
 using Microsoft.AspNetCore.Identity;
 
-
-public class IndexModel : PageModel
+namespace MidtermTodos.Pages
 {
-    private readonly ILogger<IndexModel> _logger;
-    private readonly UserManager<IdentityUser> _userManager;
-
-
-    private readonly TodoContext _context;
-
-    public IndexModel(ILogger<IndexModel> logger, TodoContext context, UserManager<IdentityUser> userManager)
+    public class IndexModel : PageModel
     {
-        _logger = logger;
-        _context = context;
-        _userManager = userManager;
-    }
+        private readonly TodoContext _context;
 
-    public IList<Todo> Todos { get; set; } = null!;
+        public IndexModel(ILogger<IndexModel> logger, TodoContext context, UserManager<IdentityUser> userManager)
+        {
+            _context = context;
+        }
 
-    public async Task OnGetAsync()
-    {
+        public IList<Todo> Todos { get; set; } = null!;
 
-        var Owner = await _userManager.GetUserAsync(User);
-        Console.WriteLine(User.Identity.Name);
-        Todos = await _context.Todos.Where(todo => todo.Owner.UserName == User.Identity.Name).ToListAsync();
+        public async Task OnGetAsync()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                Todos = await _context.Todos.Where(todo => todo.Owner.UserName == User.Identity.Name).ToListAsync();
+            }
+        }
     }
 }

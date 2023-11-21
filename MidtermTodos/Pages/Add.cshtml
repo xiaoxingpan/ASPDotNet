@@ -1,5 +1,8 @@
 ﻿@page
 @model MidtermTodos.Pages.AddModel
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+@inject Microsoft.AspNetCore.Identity.UserManager<IdentityUser> UserManager;
 @{
     ViewData["Title"] = "Add";
 }
@@ -13,6 +16,10 @@
         <div class="col-md-4">
             <form method="post" class="p-2 m-2">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input asp-for="NewTodo.Id" type="hidden" />
+                <input asp-for="NewTodo.Owner" class="form-control" type="hidden" />
+
                 <div class="form-group pb-3">
                     <label asp-for="NewTodo.Task" class="control-label pb-2"></label>
                     <input asp-for="NewTodo.Task" class="form-control" />
